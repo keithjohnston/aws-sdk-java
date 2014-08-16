@@ -17,6 +17,7 @@ package com.amazonaws.http;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
+import org.apache.http.impl.conn.SingleClientConnManager;
 import org.apache.http.impl.conn.SchemeRegistryFactory;
 import org.apache.http.params.HttpParams;
 
@@ -34,6 +35,12 @@ class ConnectionManagerFactory {
         if (config.useReaper()) {
             IdleConnectionReaper.registerConnectionManager(connectionManager);
         }
+        return connectionManager;
+    }
+
+    public static SingleClientConnManager createSingleClientConnManager( ClientConfiguration config, HttpParams httpClientParams ) {
+        SingleClientConnManager connectionManager = new SingleClientConnManager(
+                SchemeRegistryFactory.createDefault());
         return connectionManager;
     }
 }

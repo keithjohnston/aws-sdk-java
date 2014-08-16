@@ -80,7 +80,6 @@ import com.amazonaws.http.HttpResponseHandler;
 import com.amazonaws.internal.ReleasableInputStream;
 import com.amazonaws.internal.ResettableInputStream;
 import com.amazonaws.internal.StaticCredentialsProvider;
-import com.amazonaws.metrics.AwsSdkMetrics;
 import com.amazonaws.metrics.RequestMetricCollector;
 import com.amazonaws.regions.RegionUtils;
 import com.amazonaws.services.s3.internal.AWSS3V4Signer;
@@ -245,7 +244,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
     static {
         // Enable S3 specific predefined request metrics.
-        AwsSdkMetrics.addAll(Arrays.asList(S3ServiceMetric.values()));
+        //AwsSdkMetrics.addAll(Arrays.asList(S3ServiceMetric.values()));
 
         // Register S3-specific signers.
         SignerFactory.registerSigner(S3_SIGNER, S3Signer.class);

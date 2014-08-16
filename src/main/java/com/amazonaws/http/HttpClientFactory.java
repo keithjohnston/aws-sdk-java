@@ -54,7 +54,7 @@ import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.http.impl.client.DefaultRedirectStrategy;
-import org.apache.http.impl.conn.PoolingClientConnectionManager;
+import org.apache.http.impl.conn.SingleClientConnManager;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
@@ -94,8 +94,8 @@ class HttpClientFactory {
                     Math.max(socketSendBufferSizeHint, socketReceiveBufferSizeHint));
         }
 
-        PoolingClientConnectionManager connectionManager = ConnectionManagerFactory
-                .createPoolingClientConnManager(config, httpClientParams);
+        SingleClientConnManager connectionManager = ConnectionManagerFactory
+                .createSingleClientConnManager(config, httpClientParams);
         SdkHttpClient httpClient = new SdkHttpClient(connectionManager, httpClientParams);
         httpClient.setHttpRequestRetryHandler(HttpRequestNoRetryHandler.Singleton);
         httpClient.setRedirectStrategy(new LocationHeaderNotRequiredRedirectStrategy());
