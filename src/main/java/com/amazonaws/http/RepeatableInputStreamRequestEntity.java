@@ -94,10 +94,14 @@ class RepeatableInputStreamRequestEntity extends BasicHttpEntity {
         }
 
         String contentType = request.getHeaders().get("Content-Type");
+        /*
         ThroughputMetricType type = ServiceMetricTypeGuesser
                 .guessThroughputMetricType(request,
                         ServiceMetricType.UPLOAD_THROUGHPUT_NAME_SUFFIX,
                         ServiceMetricType.UPLOAD_BYTE_COUNT_NAME_SUFFIX);
+                        */
+        ThroughputMetricType type =null;
+
         if (type == null) {
             inputStreamRequestEntity = 
                 new InputStreamEntity(request.getContent(), contentLength);

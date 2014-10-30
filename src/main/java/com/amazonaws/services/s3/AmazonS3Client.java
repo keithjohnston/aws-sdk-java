@@ -3613,8 +3613,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
     @Override
     protected final ExecutionContext createExecutionContext(AmazonWebServiceRequest req) {
-        boolean isMetricsEnabled = isRequestMetricsEnabled(req) || isProfilingEnabled();
-        return new S3ExecutionContext(requestHandler2s, isMetricsEnabled, this);
+        // boolean isMetricsEnabled = isRequestMetricsEnabled(req) || isProfilingEnabled();
+        return new S3ExecutionContext(requestHandler2s, false, this);
     }
 
     private <X, Y extends AmazonWebServiceRequest> X invoke(Request<Y> request,
@@ -3623,16 +3623,16 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         AmazonWebServiceRequest originalRequest = request.getOriginalRequest();
         checkHttps(originalRequest);
         ExecutionContext executionContext = createExecutionContext(originalRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        //AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
         // Binds the request metrics to the current request.
-        request.setAWSRequestMetrics(awsRequestMetrics);
+        //request.setAWSRequestMetrics(awsRequestMetrics);
         // Having the ClientExecuteTime defined here is not ideal (for the
         // timing measurement should start as close to the top of the call
         // stack of the service client method as possible)
         // but definitely a safe compromise for S3 at least for now.
         // We can incrementally make it more elaborate should the need arise
         // for individual method.
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        //awsRequestMetrics.startEvent(Field.ClientExecuteTime);
         Response<X> response = null;
         try {
             for (Entry<String, String> entry : request.getOriginalRequest()
@@ -3660,7 +3660,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                     errorResponseHandler, executionContext);
             return response.getAwsResponse();
         } finally {
-            endClientExecution(awsRequestMetrics, request, response);
+           //endClientExecution(awsRequestMetrics, request, response);
         }
    }
 

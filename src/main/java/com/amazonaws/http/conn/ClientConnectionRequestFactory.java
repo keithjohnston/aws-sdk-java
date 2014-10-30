@@ -69,8 +69,8 @@ class ClientConnectionRequestFactory {
                     try {
                         return method.invoke(orig, args);
                     } finally {
-                        AwsSdkMetrics.getServiceMetricCollector()
-                                .collectLatency(latencyProvider.endTiming());
+                        //AwsSdkMetrics.getServiceMetricCollector()
+                        //        .collectLatency(latencyProvider.endTiming());
                     }
                 }
                 return method.invoke(orig, args);
